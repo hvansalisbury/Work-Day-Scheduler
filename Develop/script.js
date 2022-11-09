@@ -29,7 +29,7 @@ var now = dayjs();
 var currentDate = now.format('dddd, MMMM D, YYYY');
 $('#currentDay').text(currentDate);
 
-// var allTasks = ['', '', '', '', '', '', '', ''];
+var allTasks = [];
 
 function changePPFClass() {
   for (var i = 9; i < 17; i++) {
@@ -52,65 +52,53 @@ function changePPFClass() {
   }
 }
 
-// function buildTasks() {
-//   for (var i = 0; i < 8; i++) {
-//     var tasks = $('#text-' + i);
-//     var tasksText = tasks.val();
+function buildTasks() {
+  for (var i = 0; i < 8; i++) {
+    var tasks = $('#text-' + i);
+    var tasksText = tasks.val();
 
-//     if (tasksText !== null) {
-//       allTasks.push(tasksText)
-//     } else {
-//       return;
-//     }
-//   }
-// }
+    if (tasksText !== null) {
+      allTasks.push(tasksText)
+    } else {
+      return;
+    }
+  }
+}
 
-// function displayTasks() {
-//   for (var i = 0; i < allTasks.length; i++) {
-//     $('#text-' + i).val(allTasks[i]);
-//   }
-// }
+function displayTasks() {
+  for (var i = 0; i < allTasks.length; i++) {
+    $('#text-' + i).val(allTasks[i]);
+  }
+}
 
 function getTasks() {
-  for (var i = 0; 1 < 8; i++) {
-    var retrieveText = localStorage.getItem('text-' + i);
-    var textDisplay = $('#text-' + i)
-    textDisplay.val(retrieveText)
-  }
+  var retrieveTasks = JSON.parse(localStorage.getItem('tasks'));
+  if (retrieveTasks !== null) {
+    allTasks = retrieveTasks;
+  } return;
 }
 
-// function setTasks() {
-//   if (allTasks.length > 0) {
-//     localStorage.setItem("tasks", JSON.stringify(allTasks));
-//   } return;
-// }
+function setTasks() {
+  if (allTasks.length > 0) {
+    localStorage.setItem("tasks", JSON.stringify(allTasks));
+  } return;
+}
 
-// function saveTasks() {
-//   for (var i = 0; i < 8; i++) {
-//     var text = $('#text-' + i).val();
-//     allTasks[i] = text;
-//   }
-//   setTasks();
-// }
-
-function saveBtnEvents() {
+function saveTasks() {
   for (var i = 0; i < 8; i++) {
-    var btns = $('#btn-' + i);
-    var txt = $('#text' + i).val();
-    btns.click(function () {
-      localStorage.setItem('text-' + i, txt)
-    });
+    var text = $('#text-' + i).val();
+    allTasks[i] = text;
   }
-  // setTasks();
+  setTasks();
 }
-
 
 changePPFClass();
 
-// buildTasks();
+buildTasks();
 
 getTasks();
 
-// displayTasks();
+displayTasks();
 
-saveBtnEvents();
+saveBtn.on('click', saveTasks);
+
