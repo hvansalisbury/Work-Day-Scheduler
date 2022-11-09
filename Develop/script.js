@@ -29,7 +29,14 @@ var now = dayjs();
 var currentDate = now.format('dddd, MMMM D, YYYY');
 $('#currentDay').text(currentDate);
 
-var allTasks = [];
+var allTasks = ['', '', '', '', '', '', '', ''];
+
+function init() {
+  getTasks(); 
+  displayTasks();
+  changePPFClass();
+  saveTasks();
+}
 
 function changePPFClass() {
   for (var i = 9; i < 17; i++) {
@@ -52,18 +59,18 @@ function changePPFClass() {
   }
 }
 
-function buildTasks() {
-  for (var i = 0; i < 8; i++) {
-    var tasks = $('#text-' + i);
-    var tasksText = tasks.val();
+// function buildTasks() {
+//   for (var i = 0; i < 8; i++) {
+//     var tasks = $('#text-' + i);
+//     var tasksText = tasks.val();
 
-    if (tasksText !== null) {
-      allTasks.push(tasksText)
-    } else {
-      return;
-    }
-  }
-}
+//     if (tasksText !== null) {
+//       allTasks.push(tasksText)
+//     } else {
+//       return;
+//     }
+//   }
+// }
 
 function displayTasks() {
   for (var i = 0; i < allTasks.length; i++) {
@@ -85,20 +92,17 @@ function setTasks() {
 }
 
 function saveTasks() {
+  
   for (var i = 0; i < 8; i++) {
+    
+    var btn = $('#btn-' + i);
     var text = $('#text-' + i).val();
-    allTasks[i] = text;
+    console.log(text)
+    btn.click(function () {
+      allTasks[i] = text;
+    });
+    setTasks();
   }
-  setTasks();
 }
 
-changePPFClass();
-
-buildTasks();
-
-getTasks();
-
-displayTasks();
-
-saveBtn.on('click', saveTasks);
-
+init();
