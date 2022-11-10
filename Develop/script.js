@@ -1,42 +1,10 @@
-var saveBtn = $('.saveBtn')
-
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-$(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
-});
-
 var now = dayjs();
 
 var currentDate = now.format('dddd, MMMM D, YYYY');
+var currentHour = now.format('H');
 $('#currentDay').text(currentDate);
 
 var allTasks = ['', '', '', '', '', '', '', ''];
-
-function init() {
-  getTasks(); 
-  displayTasks();
-  changePPFClass();
-  saveTasks();
-}
 
 function changePPFClass() {
   for (var i = 9; i < 17; i++) {
@@ -59,50 +27,47 @@ function changePPFClass() {
   }
 }
 
-// function buildTasks() {
-//   for (var i = 0; i < 8; i++) {
-//     var tasks = $('#text-' + i);
-//     var tasksText = tasks.val();
-
-//     if (tasksText !== null) {
-//       allTasks.push(tasksText)
-//     } else {
-//       return;
-//     }
-//   }
-// }
-
-function displayTasks() {
-  for (var i = 0; i < allTasks.length; i++) {
-    $('#text-' + i).val(allTasks[i]);
-  }
-}
-
-function getTasks() {
-  var retrieveTasks = JSON.parse(localStorage.getItem('tasks'));
-  if (retrieveTasks !== null) {
-    allTasks = retrieveTasks;
-  } return;
+function testHour() {
+setInterval(function () {
+var checkHour = dayjs().format('H');
+console.log(checkHour);
+console.log(currentHour);
+    if (checkHour === currentHour) {
+      return;
+    } else {
+      currentHour = checkHour;
+      changePPFClass();
+    }
+  }, 1000);
 }
 
 function setTasks() {
-  if (allTasks.length > 0) {
-    localStorage.setItem("tasks", JSON.stringify(allTasks));
+  localStorage.setItem('allTasks', JSON.stringify(allTasks));
+  return;
+}
+
+function getTasks() {
+  var storedTasks = JSON.parse(localStorage.getItem('allTasks'));
+  if (storedTasks !== null) {
+    allTasks = storedTasks;
   } return;
 }
 
-function saveTasks() {
-  
+function renderTasks() {
   for (var i = 0; i < 8; i++) {
-    
-    var btn = $('#btn-' + i);
-    var text = $('#text-' + i).val();
-    console.log(text)
-    btn.click(function () {
-      allTasks[i] = text;
-    });
-    setTasks();
-  }
+    $('#text-' + i).val(allTasks[i]);
+  } return;
 }
 
-init();
+$('.saveBtn').on('click', function () {
+  var savedTask = $(this).siblings('.description').val();
+  var indexNum = parseInt($(this).siblings('.description').attr("data-index"));
+  allTasks[indexNum] = savedTask
+  setTasks()
+  return;
+})
+
+changePPFClass();
+getTasks();
+renderTasks();
+testHour();
