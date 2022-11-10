@@ -71,6 +71,7 @@ function renderTasks() {
   } return;
 }
 // event listener for all the save buttons, basiclaly, when any save button is clicked, the this keyword points to the save button that was clicked, then it looks for it's sibling with the class description which is the textarea and identifies it's value (the text typed into the textarea), then it looks for the data-index attribute for that element which corresponds to it's index value in the allTasks array, the array with that index is set equal to the text value in text area, finally the setTasks array is saved to local storage
+// my previous code did not differentiate between which button was clicked, therefore if there was text in a different hour, it still got saved when any save button was clicked, i could've made 8 different event listeners but spent many hours trying to find a method to assign 1 event listener to all the buttons that worked on a sibling element, the TA helped me to understand that using the sibling function utilizes a relative relationship instead of an absolute relationship, and by incorporating "this" that helped to develop this code
 $('.saveBtn').on('click', function () {
   var savedTask = $(this).siblings('.description').val();
   var indexNum = parseInt($(this).siblings('.description').attr("data-index"));
