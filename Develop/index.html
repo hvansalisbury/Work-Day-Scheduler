@@ -21,11 +21,12 @@
     <p id="currentDay" class="lead d-flex justify-content-center"></p>
   </header>
   <div class="container-fluid px-5">
-
+<!-- added data-index to divs with id hour-# to compare to current hour for color coding purposes for all hours -->
+<!-- added data-index to all buttons to help create array for saved tasks to match array index and apply to their appropriate hours -->
     <div id="hour-9" class="row time-block" data-index="9">
       <div class="col-2 col-md-1 hour text-center py-3">9AM</div>
       <textarea class="col-8 col-md-10 description" rows="3" id="text-0" data-index="0"> </textarea>
-      <button class="btn saveBtn col-2 col-md-1" aria-label="save" id="btn-0">
+      <button class="btn saveBtn col-2 col-md-1" aria-label="save">
         <i class="fas fa-save" aria-hidden="true"></i>
       </button>
     </div>
@@ -33,7 +34,7 @@
     <div id="hour-10" class="row time-block" data-index="10">
       <div class="col-2 col-md-1 hour text-center py-3">10AM</div>
       <textarea class="col-8 col-md-10 description" rows="3" id="text-1" data-index="1"> </textarea>
-      <button class="btn saveBtn col-2 col-md-1" aria-label="save" id="btn-1">
+      <button class="btn saveBtn col-2 col-md-1" aria-label="save">
         <i class="fas fa-save" aria-hidden="true"></i>
       </button>
     </div>
@@ -41,7 +42,7 @@
     <div id="hour-11" class="row time-block" data-index="11">
       <div class="col-2 col-md-1 hour text-center py-3">11AM</div>
       <textarea class="col-8 col-md-10 description" rows="3" id="text-2" data-index="2"> </textarea>
-      <button class="btn saveBtn col-2 col-md-1" aria-label="save" id="btn-2">
+      <button class="btn saveBtn col-2 col-md-1" aria-label="save">
         <i class="fas fa-save" aria-hidden="true"></i>
       </button>
     </div>
@@ -49,15 +50,15 @@
     <div id="hour-12" class="row time-block" data-index="12">
       <div class="col-2 col-md-1 hour text-center py-3">12PM</div>
       <textarea class="col-8 col-md-10 description" rows="3" id="text-3" data-index="3"> </textarea>
-      <button class="btn saveBtn col-2 col-md-1" aria-label="save" id="btn-3">
+      <button class="btn saveBtn col-2 col-md-1" aria-label="save">
         <i class="fas fa-save" aria-hidden="true"></i>
       </button>
     </div>
-
+<!-- added additional hours to cover length of full work day, hours were written in 24-hour format instead of 12 hour am/pm format -->
     <div id="hour-13" class="row time-block" data-index="13">
       <div class="col-2 col-md-1 hour text-center py-3">1PM</div>
       <textarea class="col-8 col-md-10 description" rows="3" id="text-4" data-index="4"> </textarea>
-      <button class="btn saveBtn col-2 col-md-1" aria-label="save" id="btn-4">
+      <button class="btn saveBtn col-2 col-md-1" aria-label="save">
         <i class="fas fa-save" aria-hidden="true"></i>
       </button>
     </div>
@@ -65,7 +66,7 @@
     <div id="hour-14" class="row time-block" data-index="14">
       <div class="col-2 col-md-1 hour text-center py-3">2PM</div>
       <textarea class="col-8 col-md-10 description" rows="3" id="text-5" data-index="5"> </textarea>
-      <button class="btn saveBtn col-2 col-md-1" aria-label="save" id="btn-5">
+      <button class="btn saveBtn col-2 col-md-1" aria-label="save"">
         <i class="fas fa-save" aria-hidden="true"></i>
       </button>
     </div>
@@ -73,7 +74,7 @@
     <div id="hour-15" class="row time-block" data-index="15">
       <div class="col-2 col-md-1 hour text-center py-3">3PM</div>
       <textarea class="col-8 col-md-10 description" rows="3" id="text-6" data-index="6"> </textarea>
-      <button class="btn saveBtn col-2 col-md-1" aria-label="save" id="btn-6">
+      <button class="btn saveBtn col-2 col-md-1" aria-label="save"">
         <i class="fas fa-save" aria-hidden="true"></i>
       </button>
     </div>
@@ -81,7 +82,7 @@
     <div id="hour-16" class="row time-block" data-index="16">
       <div class="col-2 col-md-1 hour text-center py-3">4PM</div>
       <textarea class="col-8 col-md-10 description" rows="3" id="text-7" data-index="7"> </textarea>
-      <button class="btn saveBtn col-2 col-md-1" aria-label="save" id="btn-7">
+      <button class="btn saveBtn col-2 col-md-1" aria-label="save">
         <i class="fas fa-save" aria-hidden="true"></i>
       </button>
     </div>
